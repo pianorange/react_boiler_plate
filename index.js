@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 const port = 5000
-const { User } = require('./models/User')
 const config = require('./config/key')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const { auth } = require('./middleware/auth')
+const { User } = require('./models/User')
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -65,7 +66,35 @@ app.post('/api/users/login', (req, res) => {
     })
 })
 
-app.post()
+
+
+app.get('/api/users/auth', auth, (req, res)=>{
+//여기까지 미들웨어(auth.js 여기선 auth) 통과해 왔다는 건 인증 true라는뜻
+//바로 인증 통과정보 제공 
+//role 0 일반유저 role 1 admin  이런식으로 준다고 가정하고 일단 0
+  res.status(200).json({
+      _id: req.user._id,
+      isAdmin: req.user.role === 0 ? false : true,
+      isAuth: true,
+      email: req.user.email,
+      name: req.user.name,
+      lastname: req.user.lastname,
+      role: req.user.role,
+      image: req.user.image
+  })
+})
+
+//logout login된 상태일테니 auth 같이 넣어줌
+app.get('/api/users/logout', auth,(req, res) => {
+    User.findOneAndUpdate({ _id: req.user._id}
+        , {token:""}
+        , (err, user) => {
+            if(err) return res.json({success: false, err});
+            return res.status(200).send({
+                success: true
+            })
+        })
+})
 
     //요청된 이메일 존재하면 PW 확인
     //문제없으면 토큰 생성
