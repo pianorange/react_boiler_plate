@@ -263,3 +263,39 @@ utils  공통 유틸 <br>
 component의 js 파일 생성 후 function 자동생성 단축키
 >rfce 
 
+App.js React Router Dom
+---
+페이지 이동시 React Router Dom활용하기로한다.
+
+사용법
+https://reacttraining.com/react-router/web/example/basic
+
+>npm install react-router-dom --save
+
+```
+import to App.js
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+```
+
+Route 에는 직접 <Component /> 하거나  Route component 속성으로  지정가능
+
+```
+        <Route exact path="/" component={LandingPage}>
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+```
+
+AXIOS (AJAX) 
+---
+Client -> Server 통신시 
+엑시오스 AXIOS 라는 라이브러리 사용하기로한다
+
+> npm install axios --save

@@ -96,6 +96,10 @@ app.get('/api/users/logout', auth,(req, res) => {
         })
 })
 
+app.get('/api/hello', (req, res)=>{
+    res.send("안녕하세요~")
+})
+
     //요청된 이메일 존재하면 PW 확인
     //문제없으면 토큰 생성
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
