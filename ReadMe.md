@@ -203,3 +203,63 @@ https://www.npmjs.com/package/jsonwebtoken
 
 쿠키에 토큰 넣기위해 의존성 추가
 > npm install cookie-parser --save
+
+React create-react app
+---
+예전에는 bable webpack 과 같이 구버전 브라우저들을 위해 
+최신 자바스크립트 문법을 변환해주는 툴들의 설정이 어려웠음.
+
+babel : 최신 자바스크립트 문법 지원않는 브라우저 들을 위해 
+최신 ES6 -> ES5 로 변환해주는 툴
+
+Webpack : 어플리케이션 확장에 따라 각종 라이브러리, 프레임워크 등 많은 모듈들을
+번들로 묶어서 관리할 수 있게 해주는 툴이 등장함
+
+
+하지만 이제 React create-react app로 한번에 시작할 수 있다.
+
+.빼먹지 말것 
+> npx create-react-app .
+
+원래는 npm 으로 했었음.
+>npm install create-react app
+
+npm VS npx
+---
+npm: 
+1. node.js프로젝트의 오픈소스 퍼블리싱 위한 온라인 리포지토리
+2. 디팬던시 관리와 인스톨을 위한 Command-line utility  
+역할: 패키지 매니징, 앱의 빌드
+<h3>npm install locally</h3>
+-g 옵션 안주면됨
+
+<h3>npm install globally</h3>
+-g 옵션
+/usr/local/bin  on Linux<br>
+%AppData%/npm   on windows<br>
+node_modules에 패키지 저장
+
+npx 는 npm registry에서 create-react-app 찾아서 다운로드 없이 실행시켜줌
+disk space 낭비 줄이고 항상 최신버전 사용가능.
+
+
+주의사항<br>
+create-react-app 에 포함된 webpack은 src 안의 내용만 관리
+public 폴더 안의 내용은 관리 안해주므로 이미지나 소스 등 파일은 되도록 src에 구성
+
+
+Boiler Plate project 의 구조 
+---
+src<br>
+_actions redux 위한 폴더<br>
+_reducer redux 위한 폴더 <br>
+components/views Page들<br>
+components/views/Sections  해당 페이지 관련된 css, component 넣는다<br>
+App.js  Routing관련 일<br>
+Config.js 환경변수 저장<br>
+hoc       higher Order Component의 약자. 권한, 역할에 의해 기능 실행하게 해주는역할<br>
+utils  공통 유틸 <br>
+
+component의 js 파일 생성 후 function 자동생성 단축키
+>rfce 
+
