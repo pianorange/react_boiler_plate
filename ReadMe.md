@@ -182,3 +182,24 @@ userSchema.pre('save', function( next ){
     }
 })
 ```
+> Salt 를 이용한 암호화<br>
+조미료 소금처럼 원문에 가미해서 암호화한다는 뜻<br>
+암호화할 때 원문을 복원 불가능한 해시로 변환하여 저장하며 <br>
+비교처리도 해시로 비교<br>
+->이때 원문 사이사이에 아스키코드를 벗어난 문자열이나 엉뚱한 랜덤 해시를 <br>
+섞어서 문자를 미리 해시로 변환해놓고 해시자체를 비교하는 공격인 래인보우 <br>딕셔너리? 공격 방지하기 위한 수법 이기도함<br>
+
+
+JWT json web token
+---
+
+토큰 생성을 위해서 JSONWEBTOKEN
+라이브러리를 다운로드
+
+>npm install jsonwebtoken --save
+
+사이트 참조하여 토큰 생성<br>
+https://www.npmjs.com/package/jsonwebtoken
+
+쿠키에 토큰 넣기위해 의존성 추가
+> npm install cookie-parser --save
