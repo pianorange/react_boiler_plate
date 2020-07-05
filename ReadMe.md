@@ -366,3 +366,91 @@ https://ant.design/docs/react/introduce<br>
 
 사용하려는 곳에 스타일시트 import
 >import 'antd/dist/antd.css';
+
+
+Redux란?
+---
+predictable state container
+상태관리 라이브러리.
+
+Props vs State
+
+Props
+1. shorthand for properties
+
+2. Props are how components 
+talk to each other.
+
+3. props flow downwards 
+from the parent component
+
+4. Props are immutable(불변. 참조전용) 
+from the child perspective
+if you want to change that value ?
+the parent should just 
+change its internal state
+```
+<ChatMessages messages={messages} currentMember={member}>
+```
+
+1. parent component에서 
+child component로 data를 
+보내는게 아닌 
+그 component 안에서 
+데이터를 전달하려면?
+State으로 
+예를 들어서 검색 창에 글을 입력할떄
+글이 변하는것은 state을 바꿈
+2. State is mutable
+3. State 이 변하면 re-render 된다.
+
+```
+state = {
+    message: ' ',
+    attachfile: undifined
+}
+```
+
+<h3>Redux Data Flow = strict unidirectional data flow </h3>
+
+![이미지 이름](https://www.oreilly.com/library/view/javascript-by-example/9781788293969/assets/a86830bb-53a6-463d-ad47-f58a926041a3.png)
+
+Action<br>
+무슨일이 일어났는지 알려줌 
+fetch user success : response의 유저를 가져오는데 성공했다.
+![Action](./readme_img/action.png)
+
+Reducer<br>
+어떻게 어플리케이션의 state가 바뀌었는지 설명하는(기술하는) function
+![Reducer](./readme_img/reducer.png)
+
+Store<br>
+state tree 전체를 를 감싸는 object<br>
+Store 은 클래스가 아니며 단지 몇가지 method를 갖는 object일 뿐이다.
+Store 내부의 state 를 바꾸는 방법은 오직 action을 dispatch하는 것이다.
+![Store](./readme_img/store.png)
+
+
+Redux UP
+---
+
+dependency related redux
+1. redux
+2. react-redux
+
+-- redux 사용 보조해주는 dependency들<br>
+Promise 형식과 function 형식을 dispatch받을때 도와주는 도구<br>
+https://joshua1988.github.io/web-development/javascript/promise-for-beginners/#promise%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94
+<br>
+3. redux-promis<br>
+4. redux-thunk
+
+> npm install redux react-redux redux-promise redux-thunk --save
+
+combineReducers 의 역할
+
+>import { combineReducers } from 'redux';
+Reducer는 스테이트가 어떻게 변하는지 기술해 줘서 기능별로 여러개의 Reducer를 나눠쓰게 되는데<br>
+이러한 Reducer들을 하나로 합쳐주는 것<br>
+
+
