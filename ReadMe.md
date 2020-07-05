@@ -299,3 +299,70 @@ Client -> Server 통신시
 엑시오스 AXIOS 라는 라이브러리 사용하기로한다
 
 > npm install axios --save
+
+
+CORS 이슈, Proxy 설정
+---
+
+현재 
+express 로 구동하는 beckend는 포트 5000
+react 는 포트3000
+
+이 상태에서 axios로 리퀘스트 보내보면 CORS cross origin resource sharing 이슈 발생 
+>Access to XMLHttpRequest at 'http://localhost:5000/api/hello' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+origin은 출처 즉, 두개의 도매인
+
+여러가지 방법으로 해결 가능하지만 여기서는 proxy 사용
+https://create-react-app.dev/docs/proxying-api-requests-in-development
+
+>npm install http-proxy-middleware --save
+
+Next, create src/setupProxy.js and place the following contents in it:
+```
+const { createProxyMiddleware } = require('http-proxy-middleware');
+module.exports = function(app) {
+  // example
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'http://localhost:5000',
+      changeOrigin: true,
+    })
+  );
+};
+```
+
+Concurrently를 이용해서 프론트, 백서버 한번에 켜기
+---
+concurrently : 여러 commands를 동시에 작동시킬수 있게 해주는 tool
+
+>npm install concurrently --save
+
+> basepath 의 package.json 에 script추가
+```
+"dev": "concurrently \"npm run beckend\" \"npm run start --prefix client\""
+```
+여기서 run start 는 client안의 package.json 의 scrpit에 선언되 있는 start여야 하니까
+--prifix client를 추가
+>이제 프로젝트의 루트 폴더에서 npm run dev 로 둘다 실행가능
+
+
+CSS Framework
+---
+ex)
+1. Material UI
+2. React Bootstrap
+3. Semantic UI
+4. Ant Design
+5. Materialize
+
+여기서는 Ant Design 사용<br>
+https://ant.design/docs/react/introduce<br>
+장점: enterprise 환경에도 걸맞는 굉장히 좋은 디자인, 사용간편<br>
+단점: 용량이 크다.
+
+>npm install antd --save
+
+사용하려는 곳에 스타일시트 import
+>import 'antd/dist/antd.css';
