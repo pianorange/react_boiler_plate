@@ -38,15 +38,14 @@ function LoginPage(props) {
 
         //loginUser는_actions폴더에 임의로 만들어야함 
         dispatch(loginUser(body))
-        .then (response =>{
+        .then (response => {
             if(response.payload.loginSuccess) {
+                alert('success');
                 props.history.push('/')
             } else{
                 alert('Error');
             }
         })
-
-        
     }
 
     return (

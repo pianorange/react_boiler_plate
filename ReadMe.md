@@ -424,6 +424,17 @@ Reducer<br>
 어떻게 어플리케이션의 state가 바뀌었는지 설명하는(기술하는) function
 ![Reducer](./readme_img/reducer.png)
 
+```
+export default function(state, action) {
+  switch (action.type) {
+    case LOGIN_USER:
+            return {...state}
+
+    default:
+        break;
+  }
+
+```
 Store<br>
 state tree 전체를 를 감싸는 object<br>
 Store 은 클래스가 아니며 단지 몇가지 method를 갖는 object일 뿐이다.
@@ -452,5 +463,24 @@ combineReducers 의 역할
 >import { combineReducers } from 'redux';
 Reducer는 스테이트가 어떻게 변하는지 기술해 줘서 기능별로 여러개의 Reducer를 나눠쓰게 되는데<br>
 이러한 Reducer들을 하나로 합쳐주는 것<br>
+
+React Hooks
+---
+ React Component 
+|Class Component |Functional Component|
+|------|-------|
+|Provide more features|Provide less features|
+|More Code|Less Code|
+|More complex Code|Simpler Code|
+|Slower Performance|Faster Performance|
+![Store](./readme_img/funcvscom.png)
+![LifeCycle](./readme_img/lifecycle.png)
+Functional Component에서는 지원 안되는 기능이 많았기 때문에,
+React 16.8이후로 Hook 기능 나옴
+(주로 componentDidMount 와 같은 라이프사이클에 관련된 기능들)
+
+<h2>꿀팁<h2>
+... = 스프레드 오퍼레이터
+이전에거 그대로 가져옴
 
 

@@ -28,8 +28,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage}>
         </Route>
-        <Route path="/login">
-          <LoginPage />
+        <Route path="/login" component={LoginPage}>
+
         </Route>
         <Route path="/register" component={RegisterPage}>
         </Route>

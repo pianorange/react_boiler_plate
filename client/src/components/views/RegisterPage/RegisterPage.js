@@ -47,6 +47,7 @@ function RegisterPage(props) {
         dispatch(registerUser(body))
         .then (response =>{
             if(response.payload.success) {
+                
                 props.history.push('/login')
             } else{
                 alert('Faild to sign up');
@@ -60,6 +61,10 @@ function RegisterPage(props) {
             , width: '100%',height: '100vh'  
             }}
          >
+             {console.log(this.props)}
+             {console.log(this.props.history)}
+             
+             {console.log(this.props.location)}
             <form style={{ display: 'flex', flexDirection:'column'}}
                 onSubmit={onSubmitHandler}
             >
