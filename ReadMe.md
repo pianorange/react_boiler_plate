@@ -484,3 +484,61 @@ React 16.8이후로 Hook 기능 나옴
 이전에거 그대로 가져옴
 
 
+HOC
+Higher Order Component 
+AOP 처럼 우선할 처리를 규정해서 하위 컴포넌트에 넘겨주는
+컴포넌트.
+ex) Auth기능으로 세부 기능 감쌀 때.
+해당 유저가 해당 페이지 들어갈 자격이 되는지 알아낸후에
+다른 페이지로 보내거나, 
+로그인이 안되있으면 로그인 화면 표시
+
+Auth 
+```
+//Auth 컴포넌트는 아래와 같이 3개의 옵션을 받게 선언 
+export default function (SpecificComponent, option, adminRoute = null) {
+    //null => 아무나 출입 가능한 페이지
+    //true => 로그인한 유저만 출입 가능 페이지
+    //false => 로그인한 유저는 출입 불가능 페이지
+    //adminRoute = null -ES6문법 값 안오면 null 
+
+//적용 방법은 아래와 같이 HOC로 세부 컴포넌트를 감싸준다
+
+<Route exact path="/" component={LandingPage}>
+        </Route>
+
+      <Switch>
+        <Route exact path="/" component={Auth(LandingPage, null)}>
+        </Route>
+        <Route path="/login" component={Auth(LoginPage, false)}>
+
+        </Route>
+        <Route path="/register" component={Auth( RegisterPage, false)}>
+        </Route>
+      </Switch>
+
+//위와 같이 옵션 설정해두면 아래처럼 라우팅 가능 
+               //로그인 하지 않은 상태
+                if(!response.payload.isAuth) {
+                    //로그인 한 사람만 들어가야 되는 페이지면 
+                    //로그인페이지로 전이시킨다
+                    if(option === true) {
+                        props.history.push('/login')
+                    }
+                } else {
+                    //로그인 한 상태
+                    //admin이 아닐 때 기본 페이지로 보내줌
+                    if(adminRoute && !payload.isAdmin) {
+                        props.history.push('/')
+
+                    } else {
+                        //option 이 false 일때 (로그인 유저는 못가는 페이지 일때)
+                        //기본페이지로 보내줌
+                        //ex) 로그인한 유저가 유저등록 페이지로 간다던가
+                        //로그인한 유저가 다시 로그인페이지로 전이시도 
+                        if(option === false){
+                            props.history.push('/')
+                        }
+                    }
+                }
+```
